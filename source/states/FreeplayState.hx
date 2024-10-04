@@ -141,12 +141,7 @@ class FreeplayState extends MusicBeatState {
 		add(missingFileBackground);
 		
 		missingFileText = new FlxText(50, 0, FlxG.width - 100, '', 24);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine':
-		        missingFileText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			default:
-				missingFileText.setFormat("Bahnschrift", 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
+		missingFileText.setFormat("VCR OSD Mono", 24, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		missingFileText.scrollFactor.set();
 		missingFileText.visible = false;
 		add(missingFileText);
@@ -180,10 +175,7 @@ class FreeplayState extends MusicBeatState {
 		#end
 
 		text = new FlxText(textBackground.x, textBackground.y + 4, FlxG.width, leText, size);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': text.setFormat("VCR OSD Mono", size, FlxColor.WHITE, CENTER);
-			default: text.setFormat("Bahnschrift", size, FlxColor.WHITE, CENTER);
-		}
+		text.setFormat("VCR OSD Mono", size, FlxColor.BLUE, CENTER);
 		text.scrollFactor.set();
 		add(text);
 
@@ -349,15 +341,15 @@ class FreeplayState extends MusicBeatState {
 
 			try
 			{
-				selectedThing = true;
-				songBG = new FlxSprite(48 + (FlxG.width / 2) - 248, 19).loadGraphic(Paths.image('healthBar', 'shared'));
+			selectedThing = true;
+			songBG = new FlxSprite(48 + (FlxG.width / 2) - 248, 19).loadGraphic(Paths.image('healthBar', 'shared'));
 		    	songBG.screenCenter(X);
 		    	songBG.antialiasing = ClientPrefs.globalAntialiasing;
 		    	songBG.scrollFactor.set();
 		   	 	add(songBG);
 
 		    	songBar = new FlxBar(songBG.x + 4, songBG.y + 4, LEFT_TO_RIGHT, Std.int(songBG.width - 8), Std.int(songBG.height - 8), this, 'barValue', 0, 3);
-				songBar.numDivisions = 800;
+			songBar.numDivisions = 800;
 		    	songBar.scrollFactor.set();
 		    	songBar.screenCenter(X);
 		    	songBar.antialiasing = ClientPrefs.globalAntialiasing;
@@ -366,9 +358,7 @@ class FreeplayState extends MusicBeatState {
 
 				loadingSongText = new FlxText(0, songBG.y + 30, LanguageHandler.loadingSongText, 20);
 		    	switch (ClientPrefs.gameStyle) {
-					case 'Psych Engine': loadingSongText.setFormat('VCR OSD Mono', 20, FlxColor.YELLOW, CENTER, OUTLINE, FlxColor.BLACK);
-					default: loadingSongText.setFormat('Bahnschrift', 20, FlxColor.YELLOW, CENTER, OUTLINE, FlxColor.BLACK);
-				}
+			loadingSongText.setFormat('VCR OSD Mono', 20, 0x00FFFF, CENTER, OUTLINE, FlxColor.BLACK);
 		    	loadingSongText.screenCenter(X);
 		    	add(loadingSongText);
 
@@ -401,11 +391,11 @@ class FreeplayState extends MusicBeatState {
 			for (item in groupSongs.members)
 				if (item.targetY == 0)
 					FlxFlicker.flicker(item, 1.05, 0.06, false, false);
-				    FlxFlicker.flicker(iconArray[currentlySelected], 1.05, 0.06, false, false);
-				    FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxFlicker.flicker(iconArray[currentlySelected], 1.05, 0.06, false, false);
+					FlxG.sound.play(Paths.sound('confirmMenu'));
 					if (FlxG.sound.music != null)
-				    FlxTween.tween(FlxG.sound.music, {pitch: 0, volume: 0}, 2.5, {ease: FlxEase.cubeOut});
-				    destroyFreeplayVocals();
+					FlxTween.tween(FlxG.sound.music, {pitch: 0, volume: 0}, 2.5, {ease: FlxEase.cubeOut});
+					destroyFreeplayVocals();
 					FlxTween.tween(scoreText, {alpha: 0}, 0.5, {ease: FlxEase.quartInOut});
 					FlxTween.tween(scoreBackground, {alpha: 0}, 0.5, {ease: FlxEase.quartInOut});
 					FlxTween.tween(difficultyText, {alpha: 0}, 0.5, {ease: FlxEase.quartInOut});

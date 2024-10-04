@@ -77,10 +77,7 @@ class GalleryScreenState extends MusicBeatState
         titleText = new FlxText(50, 50, FlxG.width - 100, imageTitle[currentIndex]);
         titleText.screenCenter(X);
         titleText.setFormat(null, 40, 0x00FFFF, "center");
-        switch (ClientPrefs.gameStyle) {
-            case 'Psych Engine': titleText.setFormat("VCR OSD Mono", 32, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			default: titleText.setFormat("Bahnschrift", 32, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        }
+        titleText.setFormat("VCR OSD Mono", 32, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(titleText);
 
         backspace = new FlxSprite(-0, 560);
@@ -138,9 +135,9 @@ override public function update(elapsed:Float):Void
     titleText.text = imageTitle[currentIndex]; 
 
         var linkOpen:Array<String> = [
-            "https://www.youtube.com/@Nuury06",  // Image 1 Link
-            "https://www.youtube.com/@Nuury06",  // Image 2 Link
-            "https://www.youtube.com/@Nuury06",  // Image 3 Link
+            "https://www.youtube.com/@alialafandy",  // Image 1 Link
+            "https://www.youtube.com/@alialafandy",  // Image 2 Link
+            "https://www.youtube.com/@alialafandy",  // Image 3 Link
             // Add other links here for each image
         ];
 

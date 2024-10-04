@@ -401,50 +401,18 @@ class PlayState extends MusicBeatState {
 		rating.noteSplash = false;
 		ratingsData.push(rating);
 
-		ratingStuff = switch (ClientPrefs.gameStyle) {
-		    case 'SB Engine':
-			    [
-				    [LanguageHandler.youSuckSbRatingNameTxt, 0.2], // From 0% to 19%
-                    [LanguageHandler.freakSbRatingNameTxt, 0.4], // From 20% to 39%
-                    [LanguageHandler.reallyBadSbRatingNameTxt, 0.5], // From 40% to 49%
-                    [LanguageHandler.badSbRatingNameTxt, 0.6], // From 50% to 59%
-                    [LanguageHandler.niceSbRatingNameTxt, 0.69], // From 60% to 68%
-                    [LanguageHandler.epicSbRatingNameTxt, 0.7], // 69%
-                    [LanguageHandler.goodSbRatingNameTxt, 0.8], // From 70% to 79%
-                    [LanguageHandler.veryGoodSbRatingNameTxt, 0.9], // From 80% to 89%
-                    [LanguageHandler.sickSbRatingNameTxt, 1], // From 90% to 99%
-                    [LanguageHandler.perfectSbRatingNameTxt, 1] // The value on this one isn't used actually, since Perfect is always "1"
-		        ];
-
-			case 'Psych Engine':
-			    [
-				    [LanguageHandler.youSuckDefaultRatingNameTxt, 0.2], // From 0% to 19%
-                    [LanguageHandler.freakDefaultRatingNameTxt, 0.4], // From 20% to 39%
-                    [LanguageHandler.reallyBadDefaultRatingNameTxt, 0.5], // From 40% to 49%
-                    [LanguageHandler.badDefaultRatingNameTxt, 0.6], // From 50% to 59%
-                    [LanguageHandler.niceDefaultRatingNameTxt, 0.69], // From 60% to 68%
-                    [LanguageHandler.epicDefaultRatingNameTxt, 0.7], // 69%
-                    [LanguageHandler.goodDefaultRatingNameTxt, 0.8], // From 70% to 79%
-                    [LanguageHandler.veryGoodDefaultRatingNameTxt, 0.9], // From 80% to 89%
-                    [LanguageHandler.sickDefaultRatingNameTxt, 1], // From 90% to 99%
-                    [LanguageHandler.perfectDefaultRatingNameTxt, 1] // The value on this one isn't used actually, since Perfect is always "1"
-		        ];
-
-			// in-case none of the above apply (NEEDED)
-			default:
-				[
-					['You Suck!', 0.2], //From 0% to 19%
-					['Shit', 0.4], //From 20% to 39%
-					['Bad', 0.5], //From 40% to 49%
-					['Bruh', 0.6], //From 50% to 59%
-					['Meh', 0.69], //From 60% to 68%
-					['Nice', 0.7], //69%
-					['Good', 0.8], //From 70% to 79%
-					['Great', 0.9], //From 80% to 89%
-					['Sick!', 1], //From 90% to 99%
-					['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
-		        ];
-		}
+		ratingStuff = [
+			['You Suck!', 0.2], //From 0% to 19%
+			['Shit', 0.4], //From 20% to 39%
+			['Bad', 0.5], //From 40% to 49%
+			['Bruh', 0.6], //From 50% to 59%
+			['Meh', 0.69], //From 60% to 68%
+			['Nice', 0.7], //69%
+			['Good', 0.8], //From 70% to 79%
+			['Great', 0.9], //From 80% to 89%
+			['Sick!', 1], //From 90% to 99%
+			['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
+		];
 
 		sbEngineIconBounce = (ClientPrefs.iconBounce && ClientPrefs.gameStyle == 'SB Engine');
 		notesCanMoveCamera = (ClientPrefs.cameraMovement);
@@ -511,22 +479,8 @@ class PlayState extends MusicBeatState {
 		// trace('stage is: ' + currentlyStage);
 		if (SONG.stage == null || SONG.stage.length < 1) {
 			switch (songName) {
-				case 'spookeez' | 'south' | 'monster':
-					currentlyStage = 'spooky';
-				case 'pico' | 'blammed' | 'philly' | 'philly-nice':
-					currentlyStage = 'philly';
-				case 'milf' | 'satin-panties' | 'high':
-					currentlyStage = 'limo';
-				case 'cocoa' | 'eggnog':
-					currentlyStage = 'mall';
-				case 'winter-horrorland':
-					currentlyStage = 'mallEvil';
-				case 'senpai' | 'roses':
-					currentlyStage = 'school';
-				case 'thorns':
-					currentlyStage = 'schoolEvil';
-				case 'ugh' | 'guns' | 'stress':
-					currentlyStage = 'tank';
+				case 'blue-alafandy' | 'cool-alafandy':
+					currentlyStage = 'alafandy';
 				default:
 					currentlyStage = 'stage';
 			}
@@ -611,327 +565,9 @@ class PlayState extends MusicBeatState {
 				}
 				dadbattleSmokes = new FlxSpriteGroup(); // troll'd
 
-			case 'spooky': // Week 2
-				if (!ClientPrefs.lowQuality) {
-					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
-				} else {
-					halloweenBG = new BGSprite('halloween_bg_low', -200, -100);
-				}
-				add(halloweenBG);
-
-				halloweenWhite = new BGSprite(null, -800, -400, 0, 0);
-				halloweenWhite.makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.WHITE);
-				halloweenWhite.alpha = 0;
-				halloweenWhite.blend = ADD;
-
-				// PRECACHE SOUNDS
-				precacheList.set('thunder_1', 'sound');
-				precacheList.set('thunder_2', 'sound');
-
-			case 'philly': // Week 3
-				if (!ClientPrefs.lowQuality) {
-					var bg:BGSprite = new BGSprite('philly/sky', -100, 0, 0.1, 0.1);
-					add(bg);
-				}
-
-				var city:BGSprite = new BGSprite('philly/city', -10, 0, 0.3, 0.3);
-				city.setGraphicSize(Std.int(city.width * 0.85));
-				city.updateHitbox();
-				add(city);
-
-				phillyLightsColors = [0xFF31A2FD, 0xFF31FD8C, 0xFFFB33F5, 0xFFFD4531, 0xFFFBA633];
-				phillyWindow = new BGSprite('philly/window', city.x, city.y, 0.3, 0.3);
-				phillyWindow.setGraphicSize(Std.int(phillyWindow.width * 0.85));
-				phillyWindow.updateHitbox();
-				add(phillyWindow);
-				phillyWindow.alpha = 0;
-
-				if (!ClientPrefs.lowQuality) {
-					var streetBehind:BGSprite = new BGSprite('philly/behindTrain', -40, 50);
-					add(streetBehind);
-				}
-
-				phillyTrain = new BGSprite('philly/train', 2000, 360);
-				add(phillyTrain);
-
-				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
-				FlxG.sound.list.add(trainSound);
-
-				phillyStreet = new BGSprite('philly/street', -40, 50);
-				add(phillyStreet);
-
-			case 'limo': // Week 4
-				var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
-				add(skyBG);
-
-				if (!ClientPrefs.lowQuality) {
-					limoMetalPole = new BGSprite('gore/metalPole', -500, 220, 0.4, 0.4);
-					add(limoMetalPole);
-
-					bgLimo = new BGSprite('limo/bgLimo', -150, 480, 0.4, 0.4, ['background limo pink'], true);
-					add(bgLimo);
-
-					limoCorpse = new BGSprite('gore/noooooo', -500, limoMetalPole.y - 130, 0.4, 0.4, ['Henchmen on rail'], true);
-					add(limoCorpse);
-
-					limoCorpseTwo = new BGSprite('gore/noooooo', -500, limoMetalPole.y, 0.4, 0.4, ['henchmen death'], true);
-					add(limoCorpseTwo);
-
-					grpLimoDancers = new FlxTypedGroup<BackgroundDancer>();
-					add(grpLimoDancers);
-
-					for (i in 0...5) {
-						var dancer:BackgroundDancer = new BackgroundDancer((370 * i) + 170, bgLimo.y - 400);
-						dancer.scrollFactor.set(0.4, 0.4);
-						grpLimoDancers.add(dancer);
-					}
-
-					limoLight = new BGSprite('gore/coldHeartKiller', limoMetalPole.x - 180, limoMetalPole.y - 80, 0.4, 0.4);
-					add(limoLight);
-
-					grpLimoParticles = new FlxTypedGroup<BGSprite>();
-					add(grpLimoParticles);
-
-					// PRECACHE BLOOD
-					var particle:BGSprite = new BGSprite('gore/stupidBlood', -400, -400, 0.4, 0.4, ['blood'], false);
-					particle.alpha = 0.01;
-					grpLimoParticles.add(particle);
-					resetLimoKill();
-
-					// PRECACHE SOUND
-					precacheList.set('dancerdeath', 'sound');
-				}
-
-				limo = new BGSprite('limo/limoDrive', -120, 550, 1, 1, ['Limo stage'], true);
-
-				fastCar = new BGSprite('limo/fastCarLol', -300, 160);
-				fastCar.active = true;
-				limoKillingState = 0;
-
-			case 'mall': // Week 5 - Cocoa, Eggnog
-				var bg:BGSprite = new BGSprite('christmas/bgWalls', -1000, -500, 0.2, 0.2);
-				bg.setGraphicSize(Std.int(bg.width * 0.8));
-				bg.updateHitbox();
-				add(bg);
-
-				if (!ClientPrefs.lowQuality) {
-					upperBoppers = new BGSprite('christmas/upperBop', -240, -90, 0.33, 0.33, ['Upper Crowd Bob']);
-					upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
-					upperBoppers.updateHitbox();
-					add(upperBoppers);
-
-					var bgEscalator:BGSprite = new BGSprite('christmas/bgEscalator', -1100, -600, 0.3, 0.3);
-					bgEscalator.setGraphicSize(Std.int(bgEscalator.width * 0.9));
-					bgEscalator.updateHitbox();
-					add(bgEscalator);
-				}
-
-				var tree:BGSprite = new BGSprite('christmas/christmasTree', 370, -250, 0.40, 0.40);
-				add(tree);
-
-				bottomBoppers = new BGSprite('christmas/bottomBop', -300, 140, 0.9, 0.9, ['Bottom Level Boppers Idle']);
-				bottomBoppers.animation.addByPrefix('hey', 'Bottom Level Boppers HEY', 24, false);
-				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
-				bottomBoppers.updateHitbox();
-				add(bottomBoppers);
-
-				var fgSnow:BGSprite = new BGSprite('christmas/fgSnow', -600, 700);
-				add(fgSnow);
-
-				santa = new BGSprite('christmas/santa', -840, 150, 1, 1, ['santa idle in fear']);
-				add(santa);
-				precacheList.set('Lights_Shut_off', 'sound');
-
-			case 'mallEvil': // Week 5 - Winter Horrorland
-				var bg:BGSprite = new BGSprite('christmas/evilBG', -400, -500, 0.2, 0.2);
-				bg.setGraphicSize(Std.int(bg.width * 0.8));
-				bg.updateHitbox();
-				add(bg);
-
-				var evilTree:BGSprite = new BGSprite('christmas/evilTree', 300, -300, 0.2, 0.2);
-				add(evilTree);
-
-				var evilSnow:BGSprite = new BGSprite('christmas/evilSnow', -200, 700);
-				add(evilSnow);
-
-			case 'school': // Week 6 - Senpai, Roses
-				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
-				GameOverSubstate.loopSoundName = 'gameOver-pixel';
-				GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
-				GameOverSubstate.characterName = 'bf-pixel-dead';
-
-				var bgSky:BGSprite = new BGSprite('weeb/weebSky', 0, 0, 0.1, 0.1);
-				add(bgSky);
-				bgSky.antialiasing = false;
-
-				var repositionfreak = -200;
-
-				var bgSchool:BGSprite = new BGSprite('weeb/weebSchool', repositionfreak, 0, 0.6, 0.90);
-				add(bgSchool);
-				bgSchool.antialiasing = false;
-
-				var bgStreet:BGSprite = new BGSprite('weeb/weebStreet', repositionfreak, 0, 0.95, 0.95);
-				add(bgStreet);
-				bgStreet.antialiasing = false;
-
-				var widfreak = Std.int(bgSky.width * 6);
-				if (!ClientPrefs.lowQuality) {
-					var fgTrees:BGSprite = new BGSprite('weeb/weebTreesBack', repositionfreak + 170, 130, 0.9, 0.9);
-					fgTrees.setGraphicSize(Std.int(widfreak * 0.8));
-					fgTrees.updateHitbox();
-					add(fgTrees);
-					fgTrees.antialiasing = false;
-				}
-
-				var bgTrees:FlxSprite = new FlxSprite(repositionfreak - 380, -800);
-				bgTrees.frames = Paths.getPackerAtlas('weeb/weebTrees');
-				bgTrees.animation.add('treeLoop', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
-				bgTrees.animation.play('treeLoop');
-				bgTrees.scrollFactor.set(0.85, 0.85);
-				add(bgTrees);
-				bgTrees.antialiasing = false;
-
-				if (!ClientPrefs.lowQuality) {
-					var treeLeaves:BGSprite = new BGSprite('weeb/petals', repositionfreak, -40, 0.85, 0.85, ['PETALS ALL'], true);
-					treeLeaves.setGraphicSize(widfreak);
-					treeLeaves.updateHitbox();
-					add(treeLeaves);
-					treeLeaves.antialiasing = false;
-				}
-
-				bgSky.setGraphicSize(widfreak);
-				bgSchool.setGraphicSize(widfreak);
-				bgStreet.setGraphicSize(widfreak);
-				bgTrees.setGraphicSize(Std.int(widfreak * 1.4));
-
-				bgSky.updateHitbox();
-				bgSchool.updateHitbox();
-				bgStreet.updateHitbox();
-				bgTrees.updateHitbox();
-
-				if (!ClientPrefs.lowQuality) {
-					bgGirls = new BackgroundGirls(-100, 190);
-					bgGirls.scrollFactor.set(0.9, 0.9);
-
-					bgGirls.setGraphicSize(Std.int(bgGirls.width * daPixelZoom));
-					bgGirls.updateHitbox();
-					add(bgGirls);
-				}
-
-			case 'schoolEvil': // Week 6 - Thorns
-				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
-				GameOverSubstate.loopSoundName = 'gameOver-pixel';
-				GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
-				GameOverSubstate.characterName = 'bf-pixel-dead';
-
-				/*if(!ClientPrefs.lowQuality) { //Does this even do something?
-					var waveEffectBG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 3, 2);
-					var waveEffectFG = new FlxWaveEffect(FlxWaveMode.ALL, 2, -1, 5, 2);
-				}*/
-				var positionX = 400;
-				var posY = 200;
-				if (!ClientPrefs.lowQuality) {
-					var bg:BGSprite = new BGSprite('weeb/animatedEvilSchool', positionX, posY, 0.8, 0.9, ['background 2'], true);
-					bg.scale.set(6, 6);
-					bg.antialiasing = false;
-					add(bg);
-
-					bgGhouls = new BGSprite('weeb/bgGhouls', -100, 190, 0.9, 0.9, ['BG freaks glitch instance'], false);
-					bgGhouls.setGraphicSize(Std.int(bgGhouls.width * daPixelZoom));
-					bgGhouls.updateHitbox();
-					bgGhouls.visible = false;
-					bgGhouls.antialiasing = false;
-					add(bgGhouls);
-				} else {
-					var bg:BGSprite = new BGSprite('weeb/animatedEvilSchool_low', positionX, posY, 0.8, 0.9);
-					bg.scale.set(6, 6);
-					bg.antialiasing = false;
-					add(bg);
-				}
-
-			case 'tank': // Week 7 - Ugh, Guns, Stress
-				var sky:BGSprite = new BGSprite('tankSky', -400, -400, 0, 0);
-				add(sky);
-
-				if (!ClientPrefs.lowQuality) {
-					var clouds:BGSprite = new BGSprite('tankClouds', FlxG.random.int(-700, -100), FlxG.random.int(-20, 20), 0.1, 0.1);
-					clouds.active = true;
-					clouds.velocity.x = FlxG.random.float(5, 15);
-					add(clouds);
-
-					var mountains:BGSprite = new BGSprite('tankMountains', -300, -20, 0.2, 0.2);
-					mountains.setGraphicSize(Std.int(1.2 * mountains.width));
-					mountains.updateHitbox();
-					add(mountains);
-
-					var buildings:BGSprite = new BGSprite('tankBuildings', -200, 0, 0.3, 0.3);
-					buildings.setGraphicSize(Std.int(1.1 * buildings.width));
-					buildings.updateHitbox();
-					add(buildings);
-				}
-
-				var ruins:BGSprite = new BGSprite('tankRuins', -200, 0, .35, .35);
-				ruins.setGraphicSize(Std.int(1.1 * ruins.width));
-				ruins.updateHitbox();
-				add(ruins);
-
-				if (!ClientPrefs.lowQuality) {
-					var smokeLeft:BGSprite = new BGSprite('smokeLeft', -200, -100, 0.4, 0.4, ['SmokeBlurLeft'], true);
-					add(smokeLeft);
-					var smokeRight:BGSprite = new BGSprite('smokeRight', 1100, -100, 0.4, 0.4, ['SmokeRight'], true);
-					add(smokeRight);
-
-					tankWatchtower = new BGSprite('tankWatchtower', 100, 50, 0.5, 0.5, ['watchtower gradient color']);
-					add(tankWatchtower);
-				}
-
-				tankGround = new BGSprite('tankRolling', 300, 300, 0.5, 0.5, ['BG tank w lighting'], true);
-				add(tankGround);
-
-				tankmanRun = new FlxTypedGroup<TankmenBG>();
-				add(tankmanRun);
-
-				var ground:BGSprite = new BGSprite('tankGround', -420, -150);
-				ground.setGraphicSize(Std.int(1.15 * ground.width));
-				ground.updateHitbox();
-				add(ground);
-				moveTank();
-
-				foregroundSprites = new FlxTypedGroup<BGSprite>();
-				foregroundSprites.add(new BGSprite('tank0', -500, 650, 1.7, 1.5, ['fg']));
-				if (!ClientPrefs.lowQuality)
-					foregroundSprites.add(new BGSprite('tank1', -300, 750, 2, 0.2, ['fg']));
-				foregroundSprites.add(new BGSprite('tank2', 450, 940, 1.5, 1.5, ['foreground']));
-				if (!ClientPrefs.lowQuality)
-					foregroundSprites.add(new BGSprite('tank4', 1300, 900, 1.5, 1.5, ['fg']));
-				foregroundSprites.add(new BGSprite('tank5', 1620, 700, 1.5, 1.5, ['fg']));
-				if (!ClientPrefs.lowQuality)
-					foregroundSprites.add(new BGSprite('tank3', 1300, 1200, 3.5, 2.5, ['fg']));
-		}
-
-		switch (Paths.formatToSongPath(SONG.song)) {
-			case 'stress':
-				GameOverSubstate.characterName = 'bf-holding-gf-dead';
-		}
-
-		if (isPixelStage) {
-			introSoundsSuffix = '-pixel';
-		}
-
-		add(gfGroup); // Needed for blammed lights
-
-		// freakty layering but whatev it works LOL
-		if (currentlyStage == 'limo')
-			add(limo);
-
-		add(dadGroup);
-		add(boyfriendGroup);
-
-		switch (currentlyStage) {
-			case 'spooky':
-				add(halloweenWhite);
-			case 'tank':
-				add(foregroundSprites);
+			case 'alafandy': // Week A
+				house = new BGSprite('house', -600, -300, 0.9, 0.9);
+				add(house);
 		}
 
 		#if LUA_ALLOWED
@@ -993,23 +629,8 @@ class PlayState extends MusicBeatState {
 
 		var gfVersion:String = SONG.gfVersion;
 		if (gfVersion == null || gfVersion.length < 1) {
-			switch (currentlyStage) {
-				case 'limo':
-					gfVersion = 'gf-car';
-				case 'mall' | 'mallEvil':
-					gfVersion = 'gf-christmas';
-				case 'school' | 'schoolEvil':
-					gfVersion = 'gf-pixel';
-				case 'tank':
-					gfVersion = 'gf-tankmen';
-				default:
-					gfVersion = 'gf';
-			}
+			gfVersion = 'gf';
 
-			switch (Paths.formatToSongPath(SONG.song)) {
-				case 'stress':
-					gfVersion = 'pico-speaker';
-			}
 			SONG.gfVersion = gfVersion; // Fix for the Chart Editor
 		}
 
@@ -1019,24 +640,6 @@ class PlayState extends MusicBeatState {
 			gf.scrollFactor.set(0.95, 0.95);
 			gfGroup.add(gf);
 			startCharacterLua(gf.curCharacter);
-
-			if (gfVersion == 'pico-speaker') {
-				if (!ClientPrefs.lowQuality) {
-					var firstTank:TankmenBG = new TankmenBG(20, 500, true);
-					firstTank.resetfreak(20, 600, true);
-					firstTank.strumTime = 10;
-					tankmanRun.add(firstTank);
-
-					for (i in 0...TankmenBG.animationNotes.length) {
-						if (FlxG.random.bool(16)) {
-							var tankBih = tankmanRun.recycle(TankmenBG);
-							tankBih.strumTime = TankmenBG.animationNotes[i][0];
-							tankBih.resetfreak(500, 200 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
-							tankmanRun.add(tankBih);
-						}
-					}
-				}
-			}
 		}
 
 		dad = new Character(0, 0, SONG.player2);
@@ -1073,16 +676,6 @@ class PlayState extends MusicBeatState {
 			addBehindBF(boyfriendFlxTrail);
 		}
 
-		switch (currentlyStage) {
-			case 'limo':
-				resetFastCar();
-				addBehindGF(fastCar);
-
-			case 'schoolEvil':
-				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069); // nice
-				addBehindDad(evilTrail);
-		}
-
 		var file:String = Paths.json(songName + '/dialogue'); // Checks for json/Psych Engine dialogue
 		if (OpenFlAssets.exists(file)) {
 			dialogueJson = DialogueBoxPsych.parseDialogue(SUtil.getPath() + file);
@@ -1103,20 +696,20 @@ class PlayState extends MusicBeatState {
 		laneunderlayOpponent = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
 		laneunderlayOpponent.color = FlxColor.BLACK;
 		laneunderlayOpponent.scrollFactor.set();
-        laneunderlayOpponent.alpha = ClientPrefs.laneunderlayAlpha - 1;
-        laneunderlayOpponent.visible = ClientPrefs.laneunderlay;
+        	laneunderlayOpponent.alpha = ClientPrefs.laneunderlayAlpha - 1;
+        	laneunderlayOpponent.visible = ClientPrefs.laneunderlay;
 		laneunderlayOpponent.cameras = [camHUD];
 
 		laneunderlay = new FlxSprite(0, 0).makeGraphic(110 * 4 + 50, FlxG.height * 2);
 		laneunderlay.color = FlxColor.BLACK;
 		laneunderlay.scrollFactor.set();
-        laneunderlay.alpha = ClientPrefs.laneunderlayAlpha - 1;
-        laneunderlay.visible = ClientPrefs.laneunderlay;
+        	laneunderlay.alpha = ClientPrefs.laneunderlayAlpha - 1;
+        	laneunderlay.visible = ClientPrefs.laneunderlay;
 		laneunderlay.cameras = [camHUD];
-        if(!ClientPrefs.middleScroll) 
-        {
-        	add(laneunderlayOpponent);
-        }
+        	if(!ClientPrefs.middleScroll) 
+        	{
+        		add(laneunderlayOpponent);
+        	}
 		add(laneunderlay);
 
 		strumLine = new FlxSprite(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, 50).makeGraphic(FlxG.width, 10);
@@ -1187,14 +780,7 @@ class PlayState extends MusicBeatState {
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
-		if (ClientPrefs.gameStyle == 'SB Engine') {
-			timeTxt.setFormat(Paths.font("bahnschrift.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
-
-		if (ClientPrefs.gameStyle == 'Psych Engine') {
-			timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
-
+		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 2;
@@ -1207,22 +793,10 @@ class PlayState extends MusicBeatState {
 		}
 		updateTime = showTime;
 
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine':
-			    timeBarBG = new AttachedSprite('timeBar');
-			    timeBarBG.x = timeTxt.x;
-			    timeBarBG.y = timeTxt.y + (timeTxt.height / 4);
-			    timeBarBG.scrollFactor.set();
-			
-			default:
-			    timeBarBG = new AttachedSprite('sbEngineBar');
-			    timeBarBG.x = timeTxt.x;
-			    timeBarBG.y = timeTxt.y + (timeTxt.height / 4);
-			    timeBarBG.scrollFactor.set();
-			    timeBarBG.screenCenter(X);
-				timeBarBG.sprTracker = timeBar;
-		}
-
+		timeBarBG = new AttachedSprite('timeBar');
+		timeBarBG.x = timeTxt.x;
+		timeBarBG.y = timeTxt.y + (timeTxt.height / 4);
+		timeBarBG.scrollFactor.set();
 		timeBarBG.alpha = 0;
 		timeBarBG.visible = showTime && ClientPrefs.showTimeBar;
 		timeBarBG.color = FlxColor.BLACK;
@@ -1230,19 +804,9 @@ class PlayState extends MusicBeatState {
 		timeBarBG.yAdd = -4;
 		add(timeBarBG);
 
-		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
-			'songPercent', 0, 1);
+		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songPercent', 0, 1);
 		timeBar.scrollFactor.set();
-
-		switch (ClientPrefs.gameStyle) {
-			case 'SB Engine':
-				reloadTimeBarColors();
-				insert(members.indexOf(timeBarBG), timeBar);
-			
-			case 'Psych Engine':
-				timeBar.createFilledBar(0xFF000000, 0xFFFFFFFF);
-		}
-
+		timeBar.createFilledBar(0xFF000000, 0xFF0000FF);
 		timeBar.numDivisions = 800;
 		timeBar.alpha = 0;
 		timeBar.visible = showTime && ClientPrefs.showTimeBar;
@@ -1255,17 +819,8 @@ class PlayState extends MusicBeatState {
 			timeTxt.y += 3;
 		}
 
-		final m = (ClientPrefs.gameStyle == 'Psych Engine'); 
-		final antiRedundancy:String = m ? 'healthBar' : (ClientPrefs.gameStyle == 'SB Engine') ? 'sbEngineBar' : 'healthBar';
 		healthBarBG = new AttachedSprite(antiRedundancy);
-		if (ClientPrefs.watermarkStyle == 'SB Engine') {
-			healthBarBG.y = FlxG.height * 0.84;
-		} else {
-			healthBarBG.y = FlxG.height * 0.85;
-		}
-		
 		healthBarBG.screenCenter(X);
-
 		healthBarBG.scrollFactor.set();
 		healthBarBG.visible = !ClientPrefs.hideHud;
 		healthBarBG.xAdd = -4;
@@ -1275,17 +830,7 @@ class PlayState extends MusicBeatState {
 		healthBarBG.cameras = [camHUD];
 		add(healthBarBG);
 
-		if (ClientPrefs.gameStyle == 'SB Engine') {
-			healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-				'health', 0, 2);
-			insert(members.indexOf(healthBarBG), healthBar);
-		}
-
-		if (ClientPrefs.gameStyle == 'Psych Engine') {
-			healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-				'health', 0, 2);
-		}
-
+		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this, 'health', 0, 2);
 		healthBar.scrollFactor.set();
 		healthBar.visible = !ClientPrefs.hideHud;
 		healthBarBG.sprTracker = healthBar;
@@ -1309,15 +854,7 @@ class PlayState extends MusicBeatState {
 		reloadHealthBarColors();
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		switch (ClientPrefs.gameStyle) {
-			
-			case 'Psych Engine':
-				scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			
-			default:
-			    scoreTxt.setFormat(Paths.font("bahnschrift.ttf"), 17, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
-
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		scoreTxt.scrollFactor.set();
@@ -1326,13 +863,7 @@ class PlayState extends MusicBeatState {
 		add(scoreTxt);
 
 		nowPlayingTxt = new FlxText(20, 15, 0, "", 32);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine':
-				nowPlayingTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			
-			default:
-				nowPlayingTxt.setFormat(Paths.font("bahnschrift.ttf"), 17, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
+		nowPlayingTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.BLUE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		nowPlayingTxt.visible = !ClientPrefs.hideHud && ClientPrefs.songIntro;
 		nowPlayingTxt.scrollFactor.set();
 		nowPlayingTxt.updateHitbox();
@@ -1342,13 +873,7 @@ class PlayState extends MusicBeatState {
 		add(nowPlayingTxt);
 
 		songNameTxt = new FlxText(20, 50, 0, "", 20);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine':
-				songNameTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			
-			default:
-				songNameTxt.setFormat(Paths.font("bahnschrift.ttf"), 17, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
+		songNameTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.BLUE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songNameTxt.visible = !ClientPrefs.hideHud && ClientPrefs.songIntro;
 		songNameTxt.scrollFactor.set();
 		songNameTxt.updateHitbox();
@@ -1364,27 +889,10 @@ class PlayState extends MusicBeatState {
 		add(songNameBackground);
 
 		judgementCounterTxt = new FlxText(25, 25, FlxG.width, "", 20);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine':
-				judgementCounterTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			
-			default:
-				judgementCounterTxt.setFormat(Paths.font("bahnschrift.ttf"), 20, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
-
-		if (ClientPrefs.judgementCounterStyle == 'Original' && ClientPrefs.gameStyle == 'SB Engine') {
-			judgementCounterTxt.text = LanguageHandler.impressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.freakTxt + ${freaks};
-		} else if (ClientPrefs.judgementCounterStyle == 'Original' && ClientPrefs.gameStyle == 'Psych Engine') {
-			judgementCounterTxt.text = LanguageHandler.impressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.shitTxt + ${freaks};
-		} else if (ClientPrefs.judgementCounterStyle == 'With Misses' && ClientPrefs.gameStyle == 'SB Engine') {
-			judgementCounterTxt.text = LanguageHandler.impressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.freakTxt + ${freaks} + LanguageHandler.comboBreakTxt + ${songMisses};
-		} else if (ClientPrefs.judgementCounterStyle == 'With Misses' && ClientPrefs.gameStyle == 'Psych Engine') {
-			judgementCounterTxt.text = LanguageHandler.impressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.shitTxt + ${freaks} + LanguageHandler.songMissesTxt + ${songMisses};
-		} else if (ClientPrefs.judgementCounterStyle == 'Better Judge' && ClientPrefs.gameStyle == 'SB Engine') {
-			judgementCounterTxt.text = LanguageHandler.totalNoteHitTxt + ${totalNotes} + LanguageHandler.comboTxt + ${combo} + LanguageHandler.maxComboTxt + ${maxCombo} + LanguageHandler.npsJudgeTxt + ${nps} + LanguageHandler.extraImpressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.freakTxt + ${freaks} + LanguageHandler.comboBreakTxt + ${songMisses};
-		} else if (ClientPrefs.judgementCounterStyle == 'Better Judge' && ClientPrefs.gameStyle == 'Psych Engine') {
-			judgementCounterTxt.text = LanguageHandler.totalNoteHitTxt + ${totalNotes} + LanguageHandler.comboTxt + ${combo} + LanguageHandler.maxComboTxt + ${maxCombo} +LanguageHandler.npsJudgeTxt + ${nps} + LanguageHandler.extraImpressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.shitTxt + ${freaks} + LanguageHandler.songMissesTxt + ${songMisses};
-		}
+		judgementCounterTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.BLUE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		judgementCounterTxt.text = LanguageHandler.impressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.shitTxt + ${freaks};
+		judgementCounterTxt.text = LanguageHandler.impressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.shitTxt + ${freaks} + LanguageHandler.songMissesTxt + ${songMisses};
+		judgementCounterTxt.text = LanguageHandler.totalNoteHitTxt + ${totalNotes} + LanguageHandler.comboTxt + ${combo} + LanguageHandler.maxComboTxt + ${maxCombo} +LanguageHandler.npsJudgeTxt + ${nps} + LanguageHandler.extraImpressiveTxt + ${impressives} + LanguageHandler.sickTxt + ${sicks} + LanguageHandler.goodTxt + ${goods} + LanguageHandler.badTxt + ${bads} + LanguageHandler.shitTxt + ${freaks} + LanguageHandler.songMissesTxt + ${songMisses};
 		judgementCounterTxt.borderSize = 2;
 		judgementCounterTxt.borderQuality = 2;
 		judgementCounterTxt.scrollFactor.set();

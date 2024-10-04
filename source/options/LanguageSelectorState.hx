@@ -94,7 +94,7 @@ class LanguageSelectorState extends MusicBeatState
 		FlxG.cameras.setDefaultDrawTarget(cameraGame, true);
 
 		background = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		background.color = 0xFF800080;
+		background.color = 0xFF000080;
 		background.updateHitbox();
 		background.screenCenter();
 		background.antialiasing = ClientPrefs.globalAntialiasing;

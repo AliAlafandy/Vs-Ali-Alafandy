@@ -539,17 +539,16 @@ class TitleState extends MusicBeatState {
 					FlxG.sound.playMusic(Paths.music('freakyMenu-' + ClientPrefs.mainMenuMusic), 0);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
-					createCoolText(['SB Engine by'], 15);
+					createCoolText(['Vs Ali Alafandy by'], 15);
 				case 4:
-					addMoreText('Stefan2008', 15);
-					addMoreText('MaysLastPlay', 15);
-					addMoreText('Fearester', 15);
+					addMoreText('Ali Alafandy', 15);
+					addMoreText("It's Me :)");
 				case 5:
 					deleteCoolText();
 				case 6:
 					createCoolText(['Forked', 'From'], -40);
 				case 8:
-					addMoreText('Psych Engine v' + MainMenuState.psychEngineVersion, -40);
+					addMoreText('SB Engine v' + MainMenuState.sbEngineVersion, -40);
 				case 9:
 					deleteCoolText();
 				case 10:
@@ -565,9 +564,9 @@ class TitleState extends MusicBeatState {
 				case 16:
 					addMoreText('Funkin');
 				case 17:
-					addMoreText('SB');
+					addMoreText('Vs');
 				case 18:
-					addMoreText('Engine');
+					addMoreText('Ali Alafandy');
 
 				case 19:
 					skipIntro();

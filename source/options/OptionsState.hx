@@ -14,6 +14,8 @@ class OptionsState extends MusicBeatState {
 	var options:Array<Array<String>> = [
 		['Adjust Delay and Combo', LanguageHandler.delayCombo],
 		#if desktop ['Controls', LanguageHandler.controls], #end
+		#if android ['Android Controls, 'Choose your virtual control'],
+		['Android Controls Settings', 'Edit your virtual control'] #end
 		['Gameplay', LanguageHandler.gameplay],
 		['Graphics', LanguageHandler.graphics],
 		['Languages', LanguageHandler.languages],
@@ -31,11 +33,17 @@ class OptionsState extends MusicBeatState {
 				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
 				Application.current.window.title = "Friday Night Funkin: SB Engine v" + MainMenuState.sbEngineVersion + " - Options Menu (Adjusting Delay and Combo)";
 			case 'Controls':
-				#if android
-				removeVirtualPad();
-				#end
 				openSubState(new options.ControlsSubState());
 				Application.current.window.title = "Friday Night Funkin': SB Engine v" + MainMenuState.sbEngineVersion + " - Options Menu (Controls Menu)";
+			case 'Android Controls':
+				removeVirtualPad();
+				openSubState(new options.android.AndroidControlsSubState());
+				Application.current.window.title = "" + MainMenuState.sbEngineVersion + " - Options Menu (Android Controls Menu)";
+			case 'Android Controls Settings':
+				removeVirtualPad();
+				openSubState(new options.android.AndroidControlsSettingsSubState());
+				Application.current.window.title = "" + MainMenuState.sbEngineVersion + " - Options Menu (Android Controls Settings Menu)";
+
 			case 'Gameplay':
 				#if android
 				removeVirtualPad();
@@ -159,7 +167,7 @@ class OptionsState extends MusicBeatState {
 		ClientPrefs.saveSettings();
 
 		#if android
-		addVirtualPad(UP_DOWN, A_B_X_Y);
+		addVirtualPad(UP_DOWN, A_B);
 		virtualPad.y = -44;
 		#end
 
@@ -202,21 +210,6 @@ class OptionsState extends MusicBeatState {
 			openOption(options[currentlySelected][0]);
 			FlxTween.tween(FlxG.sound.music, {volume: 0.5}, 0.8);
 		}
-
-		#if android
-		if (virtualPad.buttonX.justPressed && controlsActive) {
-			#if android
-			removeVirtualPad();
-			#end
-			openSubState(new options.android.AndroidControlsSubState());
-		}
-		if (virtualPad.buttonY.justPressed && controlsActive) {
-			#if android
-			removeVirtualPad();
-			#end
-			openSubState(new options.android.AndroidControlsSettingsSubState());
-		}
-		#end
 
 		if (FlxG.keys.justPressed.B #if android || FlxG.android.justReleased.BACK #end) {
 			controlsActive = false;

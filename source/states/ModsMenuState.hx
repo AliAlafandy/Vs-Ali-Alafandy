@@ -36,7 +36,7 @@ class ModsMenuState extends MusicBeatState {
 	var needToRestart = false;
 
 	private static var currentlySelected:Int = 0;
-	public static var defaultColor:FlxColor = 0xFF800080;
+	public static var defaultColor:FlxColor = 0xFF000080;
 
 	var buttonDown:FlxButton;
 	var buttonTop:FlxButton;
@@ -138,10 +138,7 @@ class ModsMenuState extends MusicBeatState {
 		add(buttonToggle);
 		buttonsArray.push(buttonToggle);
 		visibleWhenHasMods.push(buttonToggle);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': buttonToggle.label.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, CENTER);
-			default: /* SB Engine */ buttonToggle.label.setFormat("Bahnschrift", 24, FlxColor.WHITE, CENTER);
-		}
+		buttonToggle.label.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, CENTER);
 
 		setAllLabelsOffset(buttonToggle, -15, 10);
 		startX -= 70;
@@ -155,10 +152,7 @@ class ModsMenuState extends MusicBeatState {
 		add(buttonUp);
 		buttonsArray.push(buttonUp);
 		visibleWhenHasMods.push(buttonUp);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': buttonUp.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
-			default: /* SB Engine */ buttonUp.label.setFormat("Bahnschrift", 24, FlxColor.BLACK, CENTER);
-		}
+		buttonUp.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
 
 		setAllLabelsOffset(buttonUp, -15, 10);
 		startX -= 70;
@@ -172,10 +166,7 @@ class ModsMenuState extends MusicBeatState {
 		add(buttonDown);
 		buttonsArray.push(buttonDown);
 		visibleWhenHasMods.push(buttonDown);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': buttonDown.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
-			default: /* SB Engine */ buttonDown.label.setFormat("Bahnschrift", 24, FlxColor.BLACK, CENTER);
-		}
+		buttonDown.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
 
 		setAllLabelsOffset(buttonDown, -15, 10);
 
@@ -191,9 +182,7 @@ class ModsMenuState extends MusicBeatState {
 		buttonTop.setGraphicSize(80, 50);
 		buttonTop.updateHitbox();
 		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': buttonTop.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
-			default: /* SB Engine */ buttonTop.label.setFormat("Bahnschrift", 24, FlxColor.BLACK, CENTER);
-		}
+		buttonTop.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
 
 		setAllLabelsOffset(buttonTop, 0, 10);
 		add(buttonTop);
@@ -216,10 +205,7 @@ class ModsMenuState extends MusicBeatState {
 		});
 		buttonDisableAll.setGraphicSize(170, 50);
 		buttonDisableAll.updateHitbox();
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': buttonDisableAll.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
-			default: /* SB Engine */ buttonDisableAll.label.setFormat("Bahnschrift", 24, FlxColor.BLACK, CENTER);
-		}
+		buttonDisableAll.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
 
 		buttonDisableAll.label.fieldWidth = 170;
 		setAllLabelsOffset(buttonDisableAll, 0, 10);
@@ -244,9 +230,7 @@ class ModsMenuState extends MusicBeatState {
 		buttonEnableAll.setGraphicSize(170, 50);
 		buttonEnableAll.updateHitbox();
 		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': buttonEnableAll.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
-			default: /* SB Engine */ buttonEnableAll.label.setFormat("Bahnschrift", 24, FlxColor.BLACK, CENTER);
-		}
+		buttonEnableAll.label.setFormat("VCR OSD Mono", 24, FlxColor.BLACK, CENTER);
 
 		buttonEnableAll.label.fieldWidth = 170;
 		setAllLabelsOffset(buttonEnableAll, 0, 10);
@@ -256,10 +240,7 @@ class ModsMenuState extends MusicBeatState {
 
 		var startX:Int = 1100;
 		descriptionTxt = new FlxText(148, 0, FlxG.width - 216, "", 32);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': descriptionTxt.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
-			default: /* SB Engine */ descriptionTxt.setFormat("Bahnschrift", 32, FlxColor.WHITE, LEFT);
-		}
+		descriptionTxt.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
 
 		descriptionTxt.scrollFactor.set();
 		add(descriptionTxt);
@@ -342,7 +323,7 @@ class ModsMenuState extends MusicBeatState {
 	function updateButtonToggle() {
 		if (modsList[currentlySelected][1]) {
 			buttonToggle.label.text = 'ON';
-			buttonToggle.color = FlxColor.GREEN;
+			buttonToggle.color = FlxColor.BLUE;
 		} else {
 			buttonToggle.label.text = 'OFF';
 			buttonToggle.color = FlxColor.RED;

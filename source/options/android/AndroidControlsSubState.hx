@@ -41,7 +41,7 @@ class AndroidControlsSubState extends FlxSubState {
 	override function create() {
 		switch (ClientPrefs.themes) {
 			case 'SB Engine':
-				background = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.PURPLE);
+				background = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLUE);
 			
 			case 'Psych Engine':
 				background = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromHSB(FlxG.random.int(0, 359), FlxG.random.float(0, 0.8), FlxG.random.float(0.3, 1)));

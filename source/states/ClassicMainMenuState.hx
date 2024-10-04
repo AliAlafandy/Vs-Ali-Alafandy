@@ -14,8 +14,8 @@ class ClassicMainMenuState extends MusicBeatState {
 	var options:Array<String> = ['Story Mode', 'Freeplay', #end 'Credits', 'Options'];
 
 	var background:FlxSprite;
+	var modVersion:FlxText;
 	var sbEngineVersion:FlxText;
-	var psychEngineVersion:FlxText;
 	var fridayNightFunkinVersion:FlxText;
 	var galleryText:FlxText;
 	var galleryTextSine:Float = 0;
@@ -106,26 +106,20 @@ class ClassicMainMenuState extends MusicBeatState {
 		secretText = new FlxText(12, FlxG.height - 24, FlxG.width - 24, "Press S for secret screen!", 12);
 		#end
 
-		modVersion = new FlxText(12, FlxG.height - 64, 0, "Version 1.5.0" + MainMenuState.modVersion + " (Vs Ali Alafandy)", 16);
+		modVersion = new FlxText(12, FlxG.height - 64, 0, "Version" + MainMenuState.modVersion + " (Vs Ali Alafandy)", 16);
 		sbEngineVersion = new FlxText(12, FlxG.height - 44, 0, "SB Engine v" + MainMenuState.sbEngineVersion + " (Modified Psych Engine)", 16);
 		fridayNightFunkinVersion = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + MainMenuState.fnfEngineVersion, 16);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine':
-				galleryText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				secretText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				sbEngineVersion.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				fridayNightFunkinVersion.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-
-			default:
-				galleryText.setFormat("Bahnschrift", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				secretText.setFormat("Bahnschrift", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				sbEngineVersion.setFormat("Bahnschrift", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				fridayNightFunkinVersion.setFormat("Bahnschrift", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
+		
+		galleryText.setFormat("VCR OSD Mono", 16, FlxColor.BLUE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		secretText.setFormat("VCR OSD Mono", 16, FlxColor.BLUE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		modVersion.setFormat("VCR OSD Mono", 16, FlxColor.BLUE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		sbEngineVersion.setFormat("VCR OSD Mono", 16, FlxColor.BLUE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		fridayNightFunkinVersion.setFormat("VCR OSD Mono", 16, FlxColor.BLUE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		
 		galleryText.scrollFactor.set();
 		secretText.scrollFactor.set();
+		modVersion.scrollFactor.set();
 		sbEngineVersion.scrollFactor.set();
-		psychEngineVersion.scrollFactor.set();
 		fridayNightFunkinVersion.scrollFactor.set();
 		add(galleryText);
 		add(secretText);
@@ -145,10 +139,7 @@ class ClassicMainMenuState extends MusicBeatState {
 
 		tipText = new FlxText(0, 0, 0, "");
 		tipText.scrollFactor.set();
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': tipText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, CENTER);
-			default: tipText.setFormat("Bahnschrift", 24, FlxColor.WHITE, CENTER);
-		}
+		tipText.setFormat("VCR OSD Mono", 24, FlxColor.BLUE, CENTER);
 
 		tipText.updateHitbox();
 		add(tipText);

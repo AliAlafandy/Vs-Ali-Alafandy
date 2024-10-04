@@ -13,7 +13,7 @@ import options.secret.SecretSBOptionsState;
 class OptionsState extends MusicBeatState {
 	var options:Array<Array<String>> = [
 		['Adjust Delay and Combo', LanguageHandler.delayCombo],
-	#if desktop ['Controls', LanguageHandler.controls], #end
+		#if desktop ['Controls', LanguageHandler.controls], #end
 		['Gameplay', LanguageHandler.gameplay],
 		['Graphics', LanguageHandler.graphics],
 		['Languages', LanguageHandler.languages],
@@ -94,10 +94,10 @@ class OptionsState extends MusicBeatState {
 		background = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		switch (ClientPrefs.themes) {
 			case 'SB Engine':
-				background.color = 0xFF800080;
+				background.color = 0xFF000080;
 			
 			case 'Psych Engine':
-				background.color = 0xFFea71fd;
+				background.color = 0xFFEA71FD;
 		}
 		background.scrollFactor.set(0, yScroll);
 		background.screenCenter();

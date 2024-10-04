@@ -47,16 +47,10 @@ class StoryModeState extends MusicBeatState {
 		persistentUpdate = persistentDraw = true;
 
 		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': scoreText.setFormat("VCR OSD Mono", 32);
-			default: /*a.k.a "SB Engine"*/ scoreText.setFormat("Bahnschrift", 32);
-		}
+		scoreText.setFormat("VCR OSD Mono", 32);
 		
 		txtWeekTitle = new FlxText(FlxG.width * 0.7, 10, 0, "", 32);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
-			default: /*"SB Engine"*/ txtWeekTitle.setFormat("Bahnschrift", 32, FlxColor.WHITE, RIGHT);
-		}
+		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
 
 		txtWeekTitle.alpha = 0.7;
 

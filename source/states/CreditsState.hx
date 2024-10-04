@@ -160,13 +160,7 @@ class CreditsState extends MusicBeatState {
 		}
 
 		descBox = new AttachedSprite();
-		switch (ClientPrefs.themes) {
-			case 'SB Engine':
-				descBox.makeGraphic(1, 1, FlxColor.PURPLE);
-			
-			case 'Psych Engine':
-				descBox.makeGraphic(1, 1, FlxColor.BLACK);
-		}
+		descBox.makeGraphic(1, 1, FlxColor.BLUE);
 		descBox.xAdd = -10;
 		descBox.yAdd = -10;
 		descBox.alphaMult = 0.6;
@@ -174,10 +168,7 @@ class CreditsState extends MusicBeatState {
 		add(descBox);
 
 		descText = new FlxText(50, FlxG.height + offsetThing - 25, 1180, "", 32);
-		switch (ClientPrefs.gameStyle) {
-			case 'Psych Engine': descText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			default: descText.setFormat("Bahnschrift", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
+		descText.setFormat("VCR OSD Mono", 32, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descBox.sprTracker = descText;
 		add(descText);
@@ -241,7 +232,7 @@ class CreditsState extends MusicBeatState {
 				}
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				ClientPrefs.mainMenuStyle == 'Classic' ? MusicBeatState.switchState(new ClassicMainMenuState()) : MusicBeatState.switchState(new MainMenuState());
-			    Application.current.window.title = "Friday Night Funkin': SB Engine v" + MainMenuState.sbEngineVersion;
+				Application.current.window.title = "Friday Night Funkin': SB Engine v" + MainMenuState.sbEngineVersion;
 				quitting = true;
 			}
 		}

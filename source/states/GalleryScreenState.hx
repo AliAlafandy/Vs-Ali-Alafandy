@@ -65,7 +65,7 @@ class GalleryScreenState extends MusicBeatState
         add(itemGroup);
 
         descriptionText = new FlxText(50, -100, FlxG.width - 100, imageDescriptions[currentIndex]);
-        descriptionText.setFormat(null, 25, 0xffffff, "center");
+        descriptionText.setFormat(null, 25, 0x00FFFF, "center");
         descriptionText.screenCenter();
         descriptionText.y += 250;
         switch (ClientPrefs.gameStyle) {
@@ -76,7 +76,7 @@ class GalleryScreenState extends MusicBeatState
 
         titleText = new FlxText(50, 50, FlxG.width - 100, imageTitle[currentIndex]);
         titleText.screenCenter(X);
-        titleText.setFormat(null, 40, 0xffffff, "center");
+        titleText.setFormat(null, 40, 0x00FFFF, "center");
         switch (ClientPrefs.gameStyle) {
             case 'Psych Engine': titleText.setFormat("VCR OSD Mono", 32, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			default: titleText.setFormat("Bahnschrift", 32, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);

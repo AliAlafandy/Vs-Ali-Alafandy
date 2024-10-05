@@ -125,7 +125,7 @@ class PlayState extends MusicBeatState {
 	public var boyfriend:Boyfriend = null;
 
 	public var laneunderlay:FlxSprite;
-    public var laneunderlayOpponent:FlxSprite;
+    	public var laneunderlayOpponent:FlxSprite;
 
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
@@ -903,53 +903,16 @@ class PlayState extends MusicBeatState {
 		judgementCounterTxt.cameras = [camHUD];
 		add(judgementCounterTxt);
 
-		if (ClientPrefs.watermarkStyle == 'Kade Engine') {
-			engineVersionTxt = new FlxText(12, FlxG.height - 44, 0, "", 8);
-			if (ClientPrefs.gameStyle == 'SB Engine') {
-		        engineVersionTxt.setFormat(Paths.font("bahnschrift.ttf"), 15, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			}
-			if (ClientPrefs.gameStyle == 'Psych Engine') {
-		        engineVersionTxt.setFormat(Paths.font("vcr.ttf"), 15, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			}
-		    engineVersionTxt.scrollFactor.set();
-		    if (ClientPrefs.gameStyle == 'SB Engine' || ClientPrefs.gameStyle == 'Psych Engine') {
-		        engineVersionTxt.borderSize = 1.25;
-			}
-		    engineVersionTxt.visible = false;
-			if (ClientPrefs.randomEngineNames) {
-				engineVersionTxt.text = engineName + MainMenuState.sbEngineVersion + " (PE " + MainMenuState.psychEngineVersion + ")";
-			} else {
-				engineVersionTxt.text = "SB " + MainMenuState.sbEngineVersion + " (PE " + MainMenuState.psychEngineVersion + ")";
-			}
+		engineVersionTxt.setFormat(Paths.font("vcr.ttf"), 15, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		engineVersionTxt.scrollFactor.set();
+		engineVersionTxt.borderSize = 1.25;
+		engineVersionTxt.visible = false;
 			
-		    songAndDifficultyNameTxt = new FlxText(12, FlxG.height - 24, 0, "", 8);
-		    if (ClientPrefs.gameStyle == 'SB Engine') {
-		        songAndDifficultyNameTxt.setFormat(Paths.font("bahnschrift.ttf"), 15, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			} else {
-		        songAndDifficultyNameTxt.setFormat(Paths.font("vcr.ttf"), 15, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			}
-		    songAndDifficultyNameTxt.scrollFactor.set();
-		    if (ClientPrefs.gameStyle == 'SB Engine' || ClientPrefs.gameStyle == 'Psych Engine') {
-		        songAndDifficultyNameTxt.borderSize = 1.25;
-			}
-
-		    songAndDifficultyNameTxt.visible = ClientPrefs.watermark && !ClientPrefs.hideHud;
-			if (ClientPrefs.randomEngineNames) {
-				songAndDifficultyNameTxt.text =  currentlySong + " (" + CoolUtil.difficulties[storyModeDifficulty] + ") " + "| " + engineName + MainMenuState.sbEngineVersion + " (PE " + MainMenuState.psychEngineVersion + ") ";
-			} else {
-				songAndDifficultyNameTxt.text =  currentlySong + " (" + CoolUtil.difficulties[storyModeDifficulty] + ") " + "| SB " + MainMenuState.sbEngineVersion + " (PE " + MainMenuState.psychEngineVersion + ") ";
-			}
-		}
-
-		if (ClientPrefs.downScroll && ClientPrefs.watermarkStyle == 'SB Engine') {
-			engineVersionTxt.y = 140;
-			songAndDifficultyNameTxt.y = 160;
-		}
-
-		if (ClientPrefs.downScroll && ClientPrefs.watermarkStyle == 'Kade Engine' || ClientPrefs.watermarkStyle == 'Dave and Bambi') {
-			engineVersionTxt.y = 0;
-			songAndDifficultyNameTxt.y = 140;
-		}
+		songAndDifficultyNameTxt = new FlxText(12, FlxG.height - 24, 0, "", 8);
+		songAndDifficultyNameTxt.setFormat(Paths.font("vcr.ttf"), 15, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songAndDifficultyNameTxt.scrollFactor.set();
+		songAndDifficultyNameTxt.borderSize = 1.25;
+		songAndDifficultyNameTxt.visible = ClientPrefs.watermark && !ClientPrefs.hideHud;
 
 		engineVersionTxt.alpha = 0;
 		songAndDifficultyNameTxt.alpha = 0;
@@ -958,16 +921,8 @@ class PlayState extends MusicBeatState {
 		add(engineVersionTxt);
 		add(songAndDifficultyNameTxt);
 
-		if (ClientPrefs.gameStyle == 'SB Engine') {
-			botplayTxt = new FlxText(400, timeBarBG.y + 500, FlxG.width - 800, LanguageHandler.autoplayTxt, 32);
-			botplayTxt.setFormat(Paths.font("bahnschrift.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
-	
-		if (ClientPrefs.gameStyle == 'Psych Engine') {
-			botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, LanguageHandler.botplayTxt, 32);
-			botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		}
-
+		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, LanguageHandler.botplayTxt, 32);
+		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.visible = cpuControlled;
 

@@ -44,7 +44,7 @@ class TitleState extends MusicBeatState {
 	public static var checkingToastMessage:Bool = false;
 
 	var blackScreen:FlxSprite;
-	var gradientBar:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, 1, 0xFF800080);
+	var gradientBar:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, 1, 0xFF000080);
 	var creditGroup:FlxGroup;
 	var creditText:Alphabet;
 	var textGroup:FlxGroup;
@@ -66,7 +66,7 @@ class TitleState extends MusicBeatState {
 		#end
 
 		#if android
-		toastText = "Welcome to: FNF': SB Engine v" + MainMenuState.sbEngineVersion;
+		toastText = "Welcome to: FNF': Vs Ali Alafandy v" + MainMenuState.modVersion;
 		if(!checkingToastMessage) {		
 		    checkingToastMessage = true;
 		    AndroidDialogsExtend.OpenToast(toastText, 1);
@@ -79,7 +79,7 @@ class TitleState extends MusicBeatState {
 		#end
 		WeekData.loadTheFirstEnabledMod();
 		
-		Application.current.window.title = "Friday Night Funkin': SB Engine v" + MainMenuState.sbEngineVersion;
+		Application.current.window.title = "Friday Night Funkin': Vs Ali Alafandy v" + MainMenuState.modVersion;
 
 		FlxG.game.focusLostFramerate = 60;
 		FlxG.sound.muteKeys = muteKeys;
@@ -96,7 +96,7 @@ class TitleState extends MusicBeatState {
 		if (ClientPrefs.shaders) swagShader = new ColorSwap();
 		super.create();
 
-		FlxG.save.bind('stefanBeta', 'Stefan2008');
+		FlxG.save.bind('Ali Alafandy');
 
 		ClientPrefs.loadPrefs();
 
@@ -567,7 +567,6 @@ class TitleState extends MusicBeatState {
 					addMoreText('Vs');
 				case 18:
 					addMoreText('Ali Alafandy');
-
 				case 19:
 					skipIntro();
 			}
